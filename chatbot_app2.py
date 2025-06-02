@@ -1,24 +1,26 @@
-import streamlit as st
 import nltk
-
-nltk.download('punkt')
+nltk.download('punkt')  # Télécharge le tokenizer nécessaire
 
 from nltk.tokenize import sent_tokenize
+import streamlit as st
 
+# Exemple simple de fonction chatbot
 def chatbot(user_input):
     sentences = sent_tokenize(user_input)
+    # Juste un exemple : retourne la première phrase ou un message par défaut
     if sentences:
-        return "Tu as dit : " + sentences[0]
+        return f"I found this sentence: '{sentences[0]}'"
     else:
-        return "Je n'ai pas compris."
+        return "I didn't understand your input."
 
 def main():
-    st.title("Chatbot Descartes")
-    st.write("Pose une question sur le texte ou écris ce que tu veux.")
-    user_input = st.text_input("Ta question :")
+    st.title("Simple Chatbot")
+    
+    user_input = st.text_input("Ask me a question about the text:")
+    
     if user_input:
         response = chatbot(user_input)
-        st.write("Réponse :", response)
+        st.write(response)
 
 if __name__ == '__main__':
     main()
